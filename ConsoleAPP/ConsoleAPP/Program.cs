@@ -109,11 +109,11 @@ void AddStudent()
         Console.WriteLine("point i daxil edin:");
         StrPoint = Console.ReadLine();
 
-    } while (!double.TryParse(StrPoint,out point));
+    } while (!double.TryParse(StrPoint,out point)||point>100||point<0);
 
      
 checkIsWarranty:
-    Console.WriteLine("Zemanetli telebedirmi?? y/n");
+    Console.WriteLine("Zemanetli telebedirmi? y/n");
     string StrIsWarranty = Console.ReadLine();
 
     Student student;
@@ -147,6 +147,7 @@ checkIsWarranty:
     }
     catch (GroupLimitException)
     {
+
         Console.WriteLine("bir grupda 16 dan artiq telebe ola bilmez!");
     }
     catch (Exception)

@@ -20,11 +20,86 @@ namespace ConsoleAPP
             this.Point = point;
         }
         public readonly int No;
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string GroupNo { get; set; }
-        public DateTime StartDate { get; set; }
-        public double Point { get; set; }
+        private string _fullName;
+        private string _email;
+        private string _groupNo;
+        private DateTime _startDate;
+        private double _point;
+
+        public string FullName {
+            get
+            {
+                return _fullName;
+            }
+            set
+            {
+                if (value.CheckFullname())
+                {
+                    _fullName =value.ChangeToCaptalize();
+                }
+            }
+        }
+        
+        public string Email {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                if (value.IsEmailValid())
+                {
+                    _email = value;
+                }
+
+            }
+            }
+       
+        public string GroupNo {
+            get
+            {
+                return _groupNo;
+            }
+            set
+            {
+                if (value.Length == 4)
+                {
+                    _groupNo = value;
+
+                }
+            }
+        }
+        
+        public DateTime StartDate
+        {
+            get
+            {
+                return _startDate;
+
+            }
+            set
+            {
+                if (value >= DateTime.Now)
+                {
+                    _startDate = value;
+                }
+            }
+        }
+        
+        public double Point
+        {
+            get
+            {
+                return _point;
+            }
+            set
+            {
+                if(value>=0 && value <= 100)
+                {
+                    _point = value;
+                }
+            }
+        }
         public static int _staticId;
      
 

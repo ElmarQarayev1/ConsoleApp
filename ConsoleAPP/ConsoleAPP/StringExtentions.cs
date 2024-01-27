@@ -46,6 +46,15 @@ namespace ConsoleAPP
             }
             return false;
         }
+        public static string ChangeToCaptalize(this string fullname)
+        {
+
+            string[] parts = fullname.Split(' ');
+            string part0 = parts[0][0].ToString().ToUpper()+""+parts[0].Substring(1).ToLower();
+            string part1 = parts[1][0].ToString().ToUpper() + "" + parts[1].Substring(1).ToLower();
+            return part0 + " " + part1;
+
+        }
       
     }
 }
