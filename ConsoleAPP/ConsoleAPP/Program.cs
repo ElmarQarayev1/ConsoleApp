@@ -69,13 +69,13 @@ void ShowMenu()
 }
 void AddStudent()
 {
-    Console.WriteLine("FullName: ");
+    
     string fullname;
     do
     {
-
+        Console.WriteLine("FullName: ");
         fullname = Console.ReadLine();
-    } while (String.IsNullOrWhiteSpace(fullname));
+    } while (String.IsNullOrWhiteSpace(fullname)|| !fullname.CheckFullname());
 
     string email;
     do
@@ -84,7 +84,7 @@ void AddStudent()
 
         email = Console.ReadLine();
 
-    } while (String.IsNullOrWhiteSpace(email));
+    } while (String.IsNullOrWhiteSpace(email)|| !email.IsEmailValid());
 
     string groupNo;
     do
@@ -92,7 +92,7 @@ void AddStudent()
         Console.WriteLine("GroupNo: ");
          groupNo = Console.ReadLine();
 
-    } while (String.IsNullOrWhiteSpace(groupNo));
+    } while (String.IsNullOrWhiteSpace(groupNo) || groupNo.Length!=4);
 
     string StrDateTime;
     DateTime startTime;
@@ -100,7 +100,7 @@ void AddStudent()
     {
         Console.WriteLine("DateTime daxil edin:");
         StrDateTime = Console.ReadLine();
-    } while (!DateTime.TryParse(StrDateTime,out startTime));
+    } while (!DateTime.TryParse(StrDateTime,out startTime) || startTime<DateTime.Now);
 
     string StrPoint;
     double point;
