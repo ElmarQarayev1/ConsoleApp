@@ -26,8 +26,7 @@ do
             GetSelectedGroupInfo();
             break;
         case "6":
-           
-            
+            FindStudentByNo();
             break;
         default:
             break;
@@ -140,8 +139,7 @@ checkIsWarranty:
     catch (Exception)
     {
         Console.WriteLine("bilinmedik bir xeta bas verdi:(");
-    }
-   
+    } 
 }
 void ShowStudents()
 {
@@ -222,6 +220,25 @@ void GetSelectedGroupInfo()
     } while (String.IsNullOrWhiteSpace(groupNo));
 
     course.GetSelectedGroupInfo(groupNo);
+
+}
+void FindStudentByNo()
+{
+   
+    string StrNo;
+    int no;
+    do
+    {
+        Console.WriteLine("axtaracaginiz telebenin nomresini daxil edin:");
+        StrNo = Console.ReadLine();
+
+    } while (!int.TryParse(StrNo,out no));
+    if(course.FindStudentByNo(no)!=null)
+    Console.WriteLine(course.FindStudentByNo(no));
+    else
+    {
+       Console.WriteLine($"{no} Telebe yoxdur!");
+    }
 
 }
 
