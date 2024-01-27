@@ -1,4 +1,6 @@
 ﻿using System;
+using ConsoleAPP.Exceptions;
+
 namespace ConsoleAPP
 {
 	public class Course:IWarrantyManager,ICourseManager
@@ -26,12 +28,41 @@ namespace ConsoleAPP
 
         public Student FindStudentByNo(int no)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i].No == no)
+                {
+                    return _students[i];
+                }
+            }
+            return null;
         }
 
         public int FindStudentIndexByNo(int no)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i].No == no)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        public void RemoveStudentByNo(int no)
+        {
+            var wantedStudent = FindStudentByNo(no);
+            if (wantedStudent == null) throw new StudentNotFoundException();
+
+            var wantedIndex = FindStudentIndexByNo(no);
+            for (int i = wantedIndex; i < _students.Length - 1; i++)
+            {
+                var temp = _students[i];
+                _students[i] = _students[i + 1];
+                _students[i + 1] = temp;
+            }
+            Array.Resize(ref _students, _students.Length - 1);
+
         }
 
         public double GetGroupAvg(string groupNo)
@@ -63,6 +94,7 @@ namespace ConsoleAPP
             }
             return warrantyStudents;
         }
+
         public Student[] GetNonWarrantyStudents()
         {
             Student[] nonWarranty = new Student[0];
@@ -78,10 +110,7 @@ namespace ConsoleAPP
             return nonWarranty;
         }
 
-        public void RemoveStudentByNo(int no)
-        {
-            throw new NotImplementedException();
-        }
+       
        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ConsoleAPP;
+using ConsoleAPP.Exceptions;
 
 Course course = new Course();
 
@@ -15,7 +16,7 @@ do
             
             break;
         case "2":
-           
+            RemoveStudent();
             break;
         case "3":
             ShowProducts();
@@ -155,6 +156,27 @@ void ShowProducts()
         default:
             Console.WriteLine("Secim yanlisdir!");
             break;
+    }
+}
+void RemoveStudent()
+{
+    for (int i = 0; i < course.Students.Length; i++)
+        Console.WriteLine(course.Students[i]);
+    Console.WriteLine("Telebe Nomresi qeyd edin:");
+    string noStr = Console.ReadLine();
+    int no = Convert.ToInt32(noStr);
+    try
+    {
+        course.RemoveStudentByNo(no);
+    }
+    catch (StudentNotFoundException)
+    {
+        Console.WriteLine($"qeyd etdiyiniz nomreli telebe yoxdur");
+    }
+    
+    catch
+    {
+        Console.WriteLine("bilinmedik  bir xeta bas verdi");
     }
 }
 
