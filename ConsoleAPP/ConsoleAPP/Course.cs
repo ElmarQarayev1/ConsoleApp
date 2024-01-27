@@ -72,7 +72,17 @@ namespace ConsoleAPP
 
         public Student[] GetStudentsByGroupNo(string groupNo)
         {
-            throw new NotImplementedException();
+            Student[] students = new Student[0];
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i].GroupNo == groupNo)
+                {
+                    Array.Resize(ref students, students.Length + 1);
+                    students[students.Length - 1] = _students[i];
+                }
+            }
+            return students;
+            
         }
 
         public Student[] GetStudentsByPointRange(double min, double max)

@@ -11,18 +11,16 @@ do
     switch (secim)
     {
         case "1":
-
-            AddProduct();
-            
+            AddStudent();          
             break;
         case "2":
             RemoveStudent();
             break;
         case "3":
-            ShowProducts();
+            ShowStudents();
             break;
         case "4":
-            
+            GetStudentByGroupNo();
             break;
         case "5":
           
@@ -57,7 +55,7 @@ void ShowMenu()
     Console.WriteLine("10.Qrup və tələbə saylarına bax:");
     Console.WriteLine("11.Çıx:");
 }
-void AddProduct()
+void AddStudent()
 {
     Console.WriteLine("FullName: ");
     string fullname;
@@ -129,7 +127,7 @@ checkIsWarranty:
 
     course.AddStudent(student);
 }
-void ShowProducts()
+void ShowStudents()
 {
     Console.WriteLine("1.Butun telebeler");
     Console.WriteLine("2.zemanetli telebeler");
@@ -178,5 +176,23 @@ void RemoveStudent()
     {
         Console.WriteLine("bilinmedik  bir xeta bas verdi");
     }
+}
+void GetStudentByGroupNo()
+{
+    string groupNo;
+    do
+    {
+        Console.WriteLine("axaracaginiz qrupun nomresini daxil edin: ");
+         groupNo = Console.ReadLine();
+
+    } while (String.IsNullOrWhiteSpace(groupNo));
+
+    var studentByGroupNo = course.GetStudentsByGroupNo(groupNo);
+    for (int i = 0; i < studentByGroupNo.Length; i++)
+    {
+        Console.WriteLine(studentByGroupNo[i]);
+
+    }  
+    
 }
 
