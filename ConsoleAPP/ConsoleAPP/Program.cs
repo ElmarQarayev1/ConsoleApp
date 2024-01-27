@@ -23,7 +23,7 @@ do
             GetStudentByGroupNo();
             break;
         case "5":
-          
+            GetSelectedGroupInfo();
             break;
         case "6":
            
@@ -194,5 +194,18 @@ void GetStudentByGroupNo()
 
     }  
     
+}
+void GetSelectedGroupInfo()
+{
+    string groupNo;
+    do
+    {
+        Console.WriteLine("axaracaginiz qrupun nomresini daxil edin: ");
+        groupNo = Console.ReadLine();
+
+    } while (String.IsNullOrWhiteSpace(groupNo));
+
+    course.GetSelectedGroupInfo(groupNo);
+
 }
 

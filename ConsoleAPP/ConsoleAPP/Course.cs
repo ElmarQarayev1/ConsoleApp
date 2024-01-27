@@ -6,11 +6,13 @@ namespace ConsoleAPP
 	public class Course:IWarrantyManager,ICourseManager
 	{
 		
-
         public double WarrantyStudentPercent => throw new NotImplementedException();
 
         private Student[] _students = new Student[0];
         public Student[] Students => _students;
+        private int WarrantyStudent = 0;
+        private  int NonWarrantyStudent = 0;
+       
 
         public void AddStudent(Student st)
         {
@@ -84,7 +86,35 @@ namespace ConsoleAPP
             return students;
             
         }
+        public void GetSelectedGroupInfo(string groupNo)
+        {
+            int nws = 0;
+            int ws = 0;
+            int count = 0;
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i].GroupNo == groupNo)
+                {   
+                    count++;
+                }
+                if (_students[i] is WarrantyStudent warranty && warranty.GroupNo==groupNo)
+                {
 
+                    ws++;
+                    
+                }
+               else if (!(_students[i] is WarrantyStudent) && _students[i].GroupNo==groupNo)
+                {
+
+                    nws++;
+                }
+                
+            }
+            Console.WriteLine($"{groupNo} groupunda {count} adam var");
+            Console.WriteLine($"{groupNo} groupunda {nws} sayda zemanetsiz oxuyan telebe var");
+            Console.WriteLine($"{groupNo} groupunda {ws} sayda zemanetli oxuyan telebe var");
+
+        }
         public Student[] GetStudentsByPointRange(double min, double max)
         {
             throw new NotImplementedException();
@@ -104,7 +134,7 @@ namespace ConsoleAPP
             }
             return warrantyStudents;
         }
-
+     
         public Student[] GetNonWarrantyStudents()
         {
             Student[] nonWarranty = new Student[0];
@@ -119,9 +149,6 @@ namespace ConsoleAPP
             }
             return nonWarranty;
         }
-
-       
-       
     }
 }
 

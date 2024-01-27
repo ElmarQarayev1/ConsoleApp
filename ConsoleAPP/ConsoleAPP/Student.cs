@@ -26,6 +26,7 @@ namespace ConsoleAPP
         public DateTime StartDate { get; set; }
         public double Point { get; set; }
         public static int _staticId;
+     
 
         public override string ToString()
         {
