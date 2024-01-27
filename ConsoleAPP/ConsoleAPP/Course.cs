@@ -11,22 +11,39 @@ namespace ConsoleAPP
         private Student[] _students = new Student[0];
         public Student[] Students => _students;
 
-
         public void AddStudent(Student st)
         {
-            if (st is WarrantyStudent  && GetWarrantyStudentCount() >= 2)
+            if (st is WarrantyStudent  && GetWarrantyStudentCount() >= 1)
             {
                 throw new WarrantyStudentLimit();
             }
-            else if (GetNonWarrantyStudentCount()+GetWarrantyStudentCount()>=16)
+            else if (GetNonWarrantyStudentCount()+GetWarrantyStudentCount()>=2)
             {
                 throw new GroupLimitException();
-
             }         
             Array.Resize(ref _students, _students.Length + 1);
             _students[_students.Length - 1] = st;
         }
 
+        public bool CheckEmail(string email)
+        {
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i].Email == email)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckDate(DateTime dateTime)
+        {
+            if (dateTime < DateTime.Now)
+            {
+                return true;
+            }
+            return false;
+        }
         public Student FindStudentByNo(int no)
         {
          
@@ -214,6 +231,7 @@ namespace ConsoleAPP
                     students[students.Length - 1] = _students[i];
                 }
             }
+
             return students;
         }
         public void GetAllGroupsInfo()
@@ -276,7 +294,5 @@ namespace ConsoleAPP
         }
 
     }
-
-
 }
 

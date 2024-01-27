@@ -77,15 +77,38 @@ void AddStudent()
         fullname = Console.ReadLine();
     } while (String.IsNullOrWhiteSpace(fullname)|| !fullname.CheckFullname());
 
-    string email;
+    string email="";
+    bool check;
     do
     {
-        Console.WriteLine("Email: ");
+        try
+        {
+            
+            check = false;            
+            do
+            {
+                
+                Console.WriteLine("Email: ");
+                email = Console.ReadLine();
 
-        email = Console.ReadLine();
+            } while (String.IsNullOrWhiteSpace(email) || !email.IsEmailValid());
 
-    } while (String.IsNullOrWhiteSpace(email)|| !email.IsEmailValid());
+            check = course.CheckEmail(email);
+            if (check)
+            {
+                Console.WriteLine("eyni adli email daxil etmek olmaz!");
+            }
+            
+        }
+        catch
+        {
+            
+            check = true;    
+        }
 
+    } while (check);
+   
+    
     string groupNo;
     do
     {
@@ -93,15 +116,35 @@ void AddStudent()
          groupNo = Console.ReadLine();
 
     } while (String.IsNullOrWhiteSpace(groupNo) || groupNo.Length!=4);
-
+    bool check1;
     string StrDateTime;
-    DateTime startTime;
+    DateTime startTime=DateTime.Now;
     do
     {
-        Console.WriteLine("DateTime daxil edin:");
-        StrDateTime = Console.ReadLine();
-    } while (!DateTime.TryParse(StrDateTime,out startTime) || startTime<DateTime.Now);
+        try
+        {
+            check1 = false;
+            do
+            {
+                Console.WriteLine("DateTime daxil edin:");
+                StrDateTime = Console.ReadLine();
+            } while (!DateTime.TryParse(StrDateTime, out startTime));
+            check1 = course.CheckDate(startTime);
+            if (check1)
+            {
+                Console.WriteLine("daxil etdiyiniz tarix indiki tarixden evveldir!");
+            }
 
+        }
+        catch
+        {
+
+            check1 = true;
+        }
+
+    } while (check1);
+   
+  
     string StrPoint;
     double point;
     do

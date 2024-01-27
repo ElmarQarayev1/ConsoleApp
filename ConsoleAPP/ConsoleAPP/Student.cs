@@ -83,6 +83,7 @@ namespace ConsoleAPP
                 {
                     _startDate = value;
                 }
+                
             }
         }
         
