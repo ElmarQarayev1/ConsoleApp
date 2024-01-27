@@ -172,9 +172,21 @@ namespace ConsoleAPP
             }
             return count;
         }
+        public Student[] SearchWithDate(DateTime dateTime1, DateTime dateTime2)
+        {
+            Student[] students = new Student[0];
 
-
-
+            for (int i = 0; i <_students.Length ; i++)
+            {
+                if ((_students[i].StartDate>=dateTime1 && _students[i].StartDate <= dateTime2) || (_students[i].StartDate <= dateTime1 && _students[i].StartDate >= dateTime2))
+                {
+                    Array.Resize(ref students, students.Length + 1);
+                    students[students.Length - 1] = _students[i];
+                }
+            }
+            return students;
+        }
     }
+    
 }
 

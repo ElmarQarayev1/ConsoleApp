@@ -28,6 +28,9 @@ do
         case "6":
             FindStudentByNo();
             break;
+        case "7":
+            SearchWithDate();
+            break;
         default:
             break;
     }
@@ -240,5 +243,30 @@ void FindStudentByNo()
        Console.WriteLine($"{no} Telebe yoxdur!");
     }
 
+}
+void SearchWithDate()
+{
+    string StrDateTime1;
+    DateTime FirstTime;
+    do
+    {
+        Console.WriteLine("DateTime1 daxil edin:");
+        StrDateTime1 = Console.ReadLine();
+    } while (!DateTime.TryParse(StrDateTime1, out FirstTime));
+    string StrDateTime2;
+    DateTime SecondTime;
+    do
+    {
+        Console.WriteLine("DateTime2 daxil edin:");
+        StrDateTime2 = Console.ReadLine();
+    } while (!DateTime.TryParse(StrDateTime2, out SecondTime));
+
+   var search=course.SearchWithDate(FirstTime,SecondTime);
+    for (int i = 0; i < search.Length; i++)
+    {
+        Console.WriteLine(search[i]);
+
+    }
+    
 }
 
