@@ -10,22 +10,21 @@ namespace ConsoleAPP
 
         private Student[] _students = new Student[0];
         public Student[] Students => _students;
-        private int WarrantyStudent = 0;
-        private  int NonWarrantyStudent = 0;
-       
+
 
         public void AddStudent(Student st)
         {
-            if (st is WarrantyStudent warranty)
+            if (st is WarrantyStudent  && GetWarrantyStudentCount() >= 2)
             {
-                Array.Resize(ref _students, _students.Length + 1);
-                _students[_students.Length - 1] = st;
+                throw new WarrantyStudentLimit();
             }
-            else
+            else if (GetNonWarrantyStudentCount()+GetWarrantyStudentCount()>=16)
             {
-                Array.Resize(ref _students, _students.Length + 1);
-                _students[_students.Length - 1] = st;
-            }
+                throw new GroupLimitException();
+
+            }         
+            Array.Resize(ref _students, _students.Length + 1);
+            _students[_students.Length - 1] = st;
         }
 
         public Student FindStudentByNo(int no)
@@ -88,9 +87,9 @@ namespace ConsoleAPP
         }
         public void GetSelectedGroupInfo(string groupNo)
         {
-            int nws = 0;
             int ws = 0;
             int count = 0;
+            int nws = 0;
             for (int i = 0; i < _students.Length; i++)
             {
                 if (_students[i].GroupNo == groupNo)
@@ -99,9 +98,8 @@ namespace ConsoleAPP
                 }
                 if (_students[i] is WarrantyStudent warranty && warranty.GroupNo==groupNo)
                 {
-
-                    ws++;
                     
+                    ws++;                    
                 }
                else if (!(_students[i] is WarrantyStudent) && _students[i].GroupNo==groupNo)
                 {
@@ -149,6 +147,34 @@ namespace ConsoleAPP
             }
             return nonWarranty;
         }
+        public int GetWarrantyStudentCount()
+        {
+            int count = 0;
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i] is WarrantyStudent)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public int GetNonWarrantyStudentCount()
+        {
+            int count = 0;
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (!(_students[i] is WarrantyStudent))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+
+
     }
 }
 

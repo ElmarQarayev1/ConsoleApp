@@ -125,7 +125,23 @@ checkIsWarranty:
     else
         goto checkIsWarranty;
 
-    course.AddStudent(student);
+    try
+    {
+        course.AddStudent(student);
+    }
+    catch (WarrantyStudentLimit)
+    {
+        Console.WriteLine("2 den artiq warranty student ola bilmez!");
+    }
+    catch (GroupLimitException)
+    {
+        Console.WriteLine("bir grupda 16 dan artiq telebe ola bilmez!");
+    }
+    catch (Exception)
+    {
+        Console.WriteLine("bilinmedik bir xeta bas verdi:(");
+    }
+   
 }
 void ShowStudents()
 {

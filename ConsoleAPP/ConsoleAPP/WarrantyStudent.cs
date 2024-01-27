@@ -14,6 +14,7 @@ namespace ConsoleAPP
 		}
 
 		public string PrevGroupNo { get; set; }
+		public int count = 0;
 
         public override string ToString()
         {
