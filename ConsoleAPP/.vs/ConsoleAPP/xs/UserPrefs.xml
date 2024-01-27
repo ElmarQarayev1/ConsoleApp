@@ -1,4 +1,30 @@
 ﻿<Properties StartupConfiguration="{A3991B54-FDBE-46AA-A22A-D2D973D84B27}|Default">
-  <MonoDevelop.Ide.ItemProperties.ConsoleAPP FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleAPP/WarrantyStudent.cs">
+    <Files>
+      <File FileName="ConsoleAPP/Program.cs" Line="129" Column="32" />
+      <File FileName="ConsoleAPP/Student.cs" Line="18" Column="36" />
+      <File FileName="ConsoleAPP/WarrantyStudent.cs" Line="25" Column="1" />
+      <File FileName="ConsoleAPP/ICourseManager.cs" Line="25" Column="1" />
+      <File FileName="ConsoleAPP/IWarrantyManager.cs" Line="1" Column="1" />
+      <File FileName="ConsoleAPP/Course.cs" Line="76" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ConsoleAPP">
+            <Node name="ConsoleAPP">
+              <Node name="WarrantyStudent.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ConsoleAPP PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

@@ -8,12 +8,17 @@ namespace ConsoleAPP
 
 		}
 
-		public WarrantyStudent(int no,string fullName,string email, string groupNo,DateTime startDate,double point,string prevGroupNo):base(no,fullName,email,groupNo,startDate,point)
+		public WarrantyStudent(string fullName,string email, string groupNo,DateTime startDate,double point,string prevGroupNo):base(fullName,email,groupNo,startDate,point)
 		{
 			this.PrevGroupNo = prevGroupNo;
 		}
 
-		public string PrevGroupNo;
-	}
+		public string PrevGroupNo { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString() + " - PrevGroupNo: " + PrevGroupNo;
+        }
+    }
 }
 
