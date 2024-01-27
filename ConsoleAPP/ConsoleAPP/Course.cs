@@ -29,14 +29,16 @@ namespace ConsoleAPP
 
         public Student FindStudentByNo(int no)
         {
-            for (int i = 0; i < _students.Length; i++)
-            {
-                if (_students[i].No == no)
+         
+                for (int i = 0; i < _students.Length; i++)
                 {
-                    return _students[i];
+                    if (_students[i].No == no)
+                    {
+                        return _students[i];
+                    }
                 }
-            }
-            return null;
+            
+            return null;      
         }
 
         public int FindStudentIndexByNo(int no)
@@ -52,6 +54,7 @@ namespace ConsoleAPP
         }
         public void RemoveStudentByNo(int no)
         {
+            
             var wantedStudent = FindStudentByNo(no);
             if (wantedStudent == null) throw new StudentNotFoundException();
 
@@ -68,22 +71,26 @@ namespace ConsoleAPP
 
         public double GetGroupAvg(string groupNo)
         {
-            int count = 0;
-            double avaragePoint = 0;
-            for (int i = 0; i < _students.Length; i++)
-            {
-                if (_students[i].GroupNo == groupNo)
-                {
-                    count++;
-                   avaragePoint+= _students[i].Point;
-                }
 
-            }
-            return count == 0 ? 0 : (avaragePoint / count);
+                int count = 0;
+                double avaragePoint = 0;
+                for (int i = 0; i < _students.Length; i++)
+                {
+                    if (_students[i].GroupNo == groupNo)
+                    {
+                        count++;
+                        avaragePoint += _students[i].Point;
+                    }
+
+                }
+            
+                return count == 0 ? 0 : (avaragePoint / count);
+            
         }
 
         public Student[] GetStudentsByGroupNo(string groupNo)
         {
+            
             Student[] students = new Student[0];
             for (int i = 0; i < _students.Length; i++)
             {
@@ -97,35 +104,36 @@ namespace ConsoleAPP
             
         }
         public void GetSelectedGroupInfo(string groupNo)
-        {
-            int ws = 0;
-            int count = 0;
-            int nws = 0;
+        { 
+            int warrantyCount = 0;
+            int totalCount = 0;
+            int nonWarrantyCount = 0;
             for (int i = 0; i < _students.Length; i++)
             {
                 if (_students[i].GroupNo == groupNo)
-                {   
-                    count++;
-                }
-                if (_students[i] is WarrantyStudent warranty && warranty.GroupNo==groupNo)
                 {
-                    
-                    ws++;                    
-                }
-               else if (!(_students[i] is WarrantyStudent) && _students[i].GroupNo==groupNo)
-                {
+                    totalCount++;
 
-                    nws++;
+                    if (_students[i] is WarrantyStudent)
+                    {
+                        warrantyCount++;
+                    }
+
+                    else
+                    {
+                        nonWarrantyCount++;
+                    }
                 }
-                
+                              
             }
-            Console.WriteLine($"{groupNo} groupunda {count} adam var");
-            Console.WriteLine($"{groupNo} groupunda {nws} sayda zemanetsiz oxuyan telebe var");
-            Console.WriteLine($"{groupNo} groupunda {ws} sayda zemanetli oxuyan telebe var");
+            Console.WriteLine($"{groupNo} groupunda {totalCount} adam var");
+            Console.WriteLine($"{groupNo} groupunda {nonWarrantyCount} sayda zemanetsiz oxuyan telebe var");
+            Console.WriteLine($"{groupNo} groupunda {warrantyCount} sayda zemanetli oxuyan telebe var");
 
         }
         public Student[] GetStudentsByPointRange(double point1, double point2)
         {
+            
             Student[] students = new Student[0];
 
             for (int i = 0; i < _students.Length; i++)
@@ -140,6 +148,7 @@ namespace ConsoleAPP
         }
         public Student[] GetWarrantyStudents()
         {
+           
             Student[] warrantyStudents = new Student[0];
 
             for (int i = 0; i < _students.Length; i++)
@@ -155,6 +164,7 @@ namespace ConsoleAPP
      
         public Student[] GetNonWarrantyStudents()
         {
+           
             Student[] nonWarranty = new Student[0];
 
             for (int i = 0; i < _students.Length; i++)
@@ -206,7 +216,67 @@ namespace ConsoleAPP
             }
             return students;
         }
+        public void GetAllGroupsInfo()
+        {
+            if (CheckHas())
+            {
+                Console.WriteLine("hal hazirda hec bir telebe daxil edilmeyib!");
+                return;
+            }
+            for (int i = 0; i < _students.Length; i++)
+            {
+                string grupNo = _students[i].GroupNo;
+
+                if (!checkGroupProses(grupNo, i))
+                {
+                    int allStudent = 0;
+                    int nonWarrantyStudentCount = 0;
+                    int warrantyStudentCount = 0;
+
+                    for (int j = 0; j < _students.Length; j++)
+                    {
+                        if (_students[j].GroupNo == grupNo)
+                        {
+                            allStudent++;
+
+                            if (_students[j] is WarrantyStudent)
+                            {
+                                warrantyStudentCount++;
+                            }
+                            else
+                            {
+                                nonWarrantyStudentCount++;
+                            }
+                        }
+                    }
+                    Console.WriteLine($"Qrup {grupNo} melumatlari:");
+                    Console.WriteLine($"Cemi {allStudent} telebe var.");
+                    Console.WriteLine($"{nonWarrantyStudentCount} sayda zemanetli olmayan telebe var.");
+                    Console.WriteLine($"{warrantyStudentCount} sayda zemanetli telebe var.");
+                    
+                }
+            }
+        }
+
+        
+        private bool checkGroupProses(string groupNo, int currentIndex)
+        {
+            for (int i = 0; i < currentIndex; i++)
+            {
+                if (_students[i].GroupNo == groupNo)
+                {
+                    return true; 
+                }
+            }
+            return false; 
+        }
+        private bool CheckHas()
+        {
+            return _students.Length == 0;
+        }
+
     }
-    
+
+
 }
 

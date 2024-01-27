@@ -38,8 +38,8 @@ do
             AvaragePoint();
             break;
         case "10":
-
-           
+            ShowAllGroupInfo();
+            break;
         default:
             Console.WriteLine("Secim yanlisdir!");
             break;
@@ -188,8 +188,15 @@ void RemoveStudent()
     for (int i = 0; i < course.Students.Length; i++)
         Console.WriteLine(course.Students[i]);
     Console.WriteLine("Telebe Nomresi qeyd edin:");
-    string noStr = Console.ReadLine();
-    int no = Convert.ToInt32(noStr);
+    string noStr;
+    int no;
+
+    do
+    {
+         noStr = Console.ReadLine();
+       
+    } while (!int.TryParse(noStr,out no));
+    
     try
     {
         course.RemoveStudentByNo(no);
@@ -319,6 +326,10 @@ void AvaragePoint()
     } while (String.IsNullOrWhiteSpace(groupNo));
 
     Console.WriteLine(course.GetGroupAvg(groupNo));
+}
+void ShowAllGroupInfo()
+{
+    course.GetAllGroupsInfo(); 
 }
 
 
