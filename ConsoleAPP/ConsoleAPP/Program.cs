@@ -34,7 +34,12 @@ do
         case "8":
             SearchWithPointRange();
             break;
+        case "9":
+            AvaragePoint();
+            break;
+        case "10":
 
+           
         default:
             Console.WriteLine("Secim yanlisdir!");
             break;
@@ -276,15 +281,15 @@ void SearchWithDate()
 }
 void SearchWithPointRange()
 {
-   string  StrPoint1;
+    string StrPoint1;
     double point1;
     do
     {
         Console.WriteLine("axtarmaq istediyiniz araligin ilk heddini yazin:");
-       StrPoint1 = Console.ReadLine();
+        StrPoint1 = Console.ReadLine();
 
 
-    } while (!double.TryParse(StrPoint1,out point1));
+    } while (!double.TryParse(StrPoint1, out point1));
 
     string StrPoint2;
     double point2;
@@ -296,13 +301,24 @@ void SearchWithPointRange()
 
     } while (!double.TryParse(StrPoint2, out point2));
 
-    var search = course.GetStudentsByPointRange(point1,point2);
-    for (int i = 0; i <search.Length; i++)
+    var search = course.GetStudentsByPointRange(point1, point2);
+    for (int i = 0; i < search.Length; i++)
     {
         Console.WriteLine(search[i]);
 
     }
-
-
 }
+void AvaragePoint()
+{
+    string groupNo;
+    do
+    {
+        Console.WriteLine("axaracaginiz qrupun nomresini daxil edin: ");
+        groupNo = Console.ReadLine();
+
+    } while (String.IsNullOrWhiteSpace(groupNo));
+
+    Console.WriteLine(course.GetGroupAvg(groupNo));
+}
+
 

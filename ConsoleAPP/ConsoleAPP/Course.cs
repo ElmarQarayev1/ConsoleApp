@@ -68,7 +68,18 @@ namespace ConsoleAPP
 
         public double GetGroupAvg(string groupNo)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            double avaragePoint = 0;
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if (_students[i].GroupNo == groupNo)
+                {
+                    count++;
+                   avaragePoint+= _students[i].Point;
+                }
+
+            }
+            return count == 0 ? 0 : (avaragePoint / count);
         }
 
         public Student[] GetStudentsByGroupNo(string groupNo)

@@ -19,7 +19,6 @@ namespace ConsoleAPP
 
 		public double GetGroupAvg(string groupNo);
 
-
     }
 }
 
