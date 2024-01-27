@@ -113,11 +113,20 @@ namespace ConsoleAPP
             Console.WriteLine($"{groupNo} groupunda {ws} sayda zemanetli oxuyan telebe var");
 
         }
-        public Student[] GetStudentsByPointRange(double min, double max)
+        public Student[] GetStudentsByPointRange(double point1, double point2)
         {
-            throw new NotImplementedException();
-        }
+            Student[] students = new Student[0];
 
+            for (int i = 0; i < _students.Length; i++)
+            {
+                if ((_students[i].Point >= point1 && _students[i].Point <= point2) || (_students[i].Point <= point1 && _students[i].Point >= point2 ))
+                {
+                    Array.Resize(ref students, students.Length + 1);
+                    students[students.Length - 1] = _students[i];
+                }
+            }
+            return students;
+        }
         public Student[] GetWarrantyStudents()
         {
             Student[] warrantyStudents = new Student[0];

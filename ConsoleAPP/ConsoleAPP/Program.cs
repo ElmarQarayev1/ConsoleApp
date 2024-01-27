@@ -31,7 +31,12 @@ do
         case "7":
             SearchWithDate();
             break;
+        case "8":
+            SearchWithPointRange();
+            break;
+
         default:
+            Console.WriteLine("Secim yanlisdir!");
             break;
     }
 
@@ -268,5 +273,36 @@ void SearchWithDate()
 
     }
     
+}
+void SearchWithPointRange()
+{
+   string  StrPoint1;
+    double point1;
+    do
+    {
+        Console.WriteLine("axtarmaq istediyiniz araligin ilk heddini yazin:");
+       StrPoint1 = Console.ReadLine();
+
+
+    } while (!double.TryParse(StrPoint1,out point1));
+
+    string StrPoint2;
+    double point2;
+    do
+    {
+        Console.WriteLine("axtarmaq istediyiniz araligin son heddini yazin:");
+        StrPoint2 = Console.ReadLine();
+
+
+    } while (!double.TryParse(StrPoint2, out point2));
+
+    var search = course.GetStudentsByPointRange(point1,point2);
+    for (int i = 0; i <search.Length; i++)
+    {
+        Console.WriteLine(search[i]);
+
+    }
+
+
 }
 
