@@ -13,18 +13,39 @@ namespace ConsoleAPP
 
         public void AddStudent(Student st)
         {
-            if (st is WarrantyStudent  && GetWarrantyStudentCount() >= 1)
+
+            int sameGroupCount = 0;
+            int warrantyStudentCount = 0;
+
+            for (int i = 0; i < _students.Length; i++)
+            {
+                
+                if (_students[i].GroupNo == st.GroupNo)
+                {
+
+                    sameGroupCount++;
+
+                    if (_students[i] is WarrantyStudent)
+                    {
+                        warrantyStudentCount++;
+                    }
+                }
+            }
+            
+            if (sameGroupCount >= 16)
+            {
+                throw new GroupLimitException();
+            }
+
+            if (st is WarrantyStudent && warrantyStudentCount >= 2)
             {
                 throw new WarrantyStudentLimit();
             }
-            else if (GetNonWarrantyStudentCount()+GetWarrantyStudentCount()>=2)
-            {
-                throw new GroupLimitException();
-            }         
+      
             Array.Resize(ref _students, _students.Length + 1);
             _students[_students.Length - 1] = st;
         }
-
+       
         public bool CheckEmail(string email)
         {
             for (int i = 0; i < _students.Length; i++)
@@ -85,7 +106,6 @@ namespace ConsoleAPP
             Array.Resize(ref _students, _students.Length - 1);
 
         }
-
         public double GetGroupAvg(string groupNo)
         {
 
