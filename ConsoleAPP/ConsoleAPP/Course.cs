@@ -59,7 +59,8 @@ namespace ConsoleAPP
         }
         public bool CheckDate(DateTime dateTime)
         {
-            if (dateTime < DateTime.Now)
+            var diff = DateTime.Now - dateTime;
+            if (diff.TotalDays >=1)
             {
                 return true;
             }
@@ -312,7 +313,6 @@ namespace ConsoleAPP
         {
             return _students.Length == 0;
         }
-
     }
 }
 

@@ -6,13 +6,13 @@ namespace ConsoleAPP
         public static bool CheckFullname( this string fullname)
         {
           
-            string[] nameParts = fullname.Split(' ');
+            string[] namesArr = fullname.Split(' ');
 
-            if (nameParts.Length == 2)
+            if (namesArr.Length == 2)
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    if (String.IsNullOrWhiteSpace(nameParts[i]) || !CheckIsLetter(nameParts[i]) || nameParts[i].Length<3)
+                    if (String.IsNullOrWhiteSpace(namesArr[i]) || !CheckIsLetter(namesArr[i]) || namesArr[i].Length<3)
                     {
                         return false;
                     }
@@ -37,9 +37,9 @@ namespace ConsoleAPP
 
             if (!email.StartsWith("@") && email.Contains("@") && email.EndsWith(".az")&&!email.StartsWith("."))
             {
-                string[] parts = email.Split('@');
+                string[] emailArr = email.Split('@');
 
-                if (parts.Length == 2 && !parts[1].StartsWith("."))
+                if (emailArr.Length == 2 && !emailArr[1].StartsWith("."))
                 {
                     return true;
                 }
@@ -50,8 +50,8 @@ namespace ConsoleAPP
         {
 
             string[] parts = fullname.Split(' ');
-            string part0 = parts[0][0].ToString().ToUpper()+""+parts[0].Substring(1).ToLower();
-            string part1 = parts[1][0].ToString().ToUpper() + "" + parts[1].Substring(1).ToLower();
+            string part0 = parts[0][0].ToString().ToUpper()+parts[0].Substring(1).ToLower();
+            string part1 = parts[1][0].ToString().ToUpper()+parts[1].Substring(1).ToLower();
             return part0 + " " + part1;
 
         }

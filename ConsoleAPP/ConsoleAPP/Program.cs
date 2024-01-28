@@ -40,12 +40,15 @@ do
         case "10":
             ShowAllGroupInfo();
             break;
+        case "11":
+            Console.WriteLine("programdan cixildi");
+            break;
         default:
             Console.WriteLine("Secim yanlisdir!");
             break;
     }
 
-} while (secim != "0");
+} while (secim != "11");
 
 string SecimEt()
 {
@@ -69,109 +72,88 @@ void ShowMenu()
 }
 void AddStudent()
 {
-    
-    string fullname;
-    do
+    FullName:
+    Console.WriteLine("Fullnameyi daxil edin:");
+    string fullname = Console.ReadLine();
+    if (CheckFullName(fullname))
     {
-        Console.WriteLine("FullName: ");
-        fullname = Console.ReadLine();
-    } while (String.IsNullOrWhiteSpace(fullname)|| !fullname.CheckFullname());
-
-    string email="";
-    bool check;
-    do
+        Console.WriteLine("zehmet olmasa fullnameyi duzgun daxil edin!");
+        goto FullName;
+    }
+    Email:
+    Console.WriteLine("Emaili daxil edin:");
+    string email = Console.ReadLine();
+    if (CheckEmaill(email))
     {
-        try
-        {
-            
-            check = false;            
-            do
-            {
-                
-                Console.WriteLine("Email: ");
-                email = Console.ReadLine();
-
-            } while (String.IsNullOrWhiteSpace(email) || !email.IsEmailValid());
-
-            check = course.CheckEmail(email);
-            if (check)
-            {
-                Console.WriteLine("eyni adli email daxil etmek olmaz!");
-            }
-            
-        }
-        catch
-        {
-            
-            check = true;    
-        }
-
-    } while (check);
-   
-    
-    string groupNo;
-    do
+        Console.WriteLine("zehmet olmasa emaili duzgun daxil edin!");
+        goto Email;
+    }
+    if (course.CheckEmail(email))
     {
-        Console.WriteLine("GroupNo: ");
-         groupNo = Console.ReadLine();
-
-    } while (String.IsNullOrWhiteSpace(groupNo) || groupNo.Length!=4);
-    bool check1;
-    string StrDateTime;
-    DateTime startTime=DateTime.Now;
-    do
+        Console.WriteLine("eyni adli email daxil etmek mumkun deyil!");
+        goto Email;
+    }
+    GroupNo:
+    Console.WriteLine("group no daxil edin:");
+    string groupNo = Console.ReadLine();
+    if (CheckGroupNo(groupNo))
     {
-        try
-        {
-            check1 = false;
-            do
-            {
-                Console.WriteLine("DateTime daxil edin:");
-                StrDateTime = Console.ReadLine();
-            } while (!DateTime.TryParse(StrDateTime, out startTime));
-            check1 = course.CheckDate(startTime);
-            if (check1)
-            {
-                Console.WriteLine("daxil etdiyiniz tarix indiki tarixden evveldir!");
-            }
-
-        }
-        catch
-        {
-
-            check1 = true;
-        }
-
-    } while (check1);
-   
-  
-    string StrPoint;
+        Console.WriteLine("zehmet olmasa duzgun group no daxil edin!");
+        goto GroupNo;
+    }
+    DataTimee:
+    Console.WriteLine("DateTime daxil edin:");
+    string strDateTime = Console.ReadLine();
+    DateTime startTime;
+    if(!DateTime.TryParse(strDateTime,out startTime))
+    {
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        goto DataTimee;
+    }
+    if (course.CheckDate(startTime))
+    {
+        Console.WriteLine("kecmis tarix olmaz!");
+        goto DataTimee;
+    }
+    Point:
+    Console.WriteLine("Pointi daxil edin:");
+    string strPoint = Console.ReadLine();
     double point;
-    do
+    if(!double.TryParse(strPoint,out point))
     {
-        Console.WriteLine("point i daxil edin:");
-        StrPoint = Console.ReadLine();
-
-    } while (!double.TryParse(StrPoint,out point)||point>100||point<0);
-
-     
-checkIsWarranty:
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        goto Point;
+    }
+    if(point<0 || point > 100)
+    {
+        Console.WriteLine("0 ve 100 araliginda olmalidir!");
+        goto Point;
+    }
+    checkIsWarranty:
     Console.WriteLine("Zemanetli telebedirmi? y/n");
     string StrIsWarranty = Console.ReadLine();
 
     Student student;
-   
+      
     if (StrIsWarranty == "y")
     {
-        string PrevgroupNo;
-        do
+   
+        PrevGroupNo:
+        Console.WriteLine("Prev groupNo daxil edin:");
+        string prevGroupNo = Console.ReadLine();
+        if (CheckGroupNo(prevGroupNo))
         {
-            Console.WriteLine("Prev GroupNo: ");
-            PrevgroupNo = Console.ReadLine();
+            Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+            goto PrevGroupNo;
 
-        } while (String.IsNullOrWhiteSpace(PrevgroupNo));
-
-     student = new WarrantyStudent(fullname,email,groupNo,startTime,point, PrevgroupNo);
+        }
+        if (prevGroupNo == groupNo)
+        {
+            Console.WriteLine("evvelki groupNo ile eyni ola bilmez!");
+            goto PrevGroupNo;
+        }
+        
+        student = new WarrantyStudent(fullname, email, groupNo, startTime, point, prevGroupNo);
     }
     else if (StrIsWarranty == "n")
     {
@@ -188,16 +170,23 @@ checkIsWarranty:
     {
         Console.WriteLine("2 den artiq warranty student ola bilmez!");
     }
+
     catch (GroupLimitException)
     {
 
         Console.WriteLine("bir grupda 16 dan artiq telebe ola bilmez!");
+        goto GroupNo;
+
+
     }
+
+
     catch (Exception)
     {
-        Console.WriteLine("bilinmedik bir xeta bas verdi:(");
+        Console.WriteLine("bilinmeyen xeta bas verdi(:");
     } 
 }
+
 void ShowStudents()
 {
     Console.WriteLine("1.Butun telebeler");
@@ -375,5 +364,29 @@ void ShowAllGroupInfo()
 {
     course.GetAllGroupsInfo(); 
 }
+bool CheckFullName(string fullname)
+{
+    if (String.IsNullOrWhiteSpace(fullname)) return true;
+    if (!fullname.CheckFullname()) return true;
+
+    return false;
+}
+bool CheckEmaill(string email)
+{
+    if (String.IsNullOrWhiteSpace(email)) return true;
+    if (!email.IsEmailValid()) return true;
+
+    return false;
+
+}
+bool CheckGroupNo(string groupNo)
+{
+    if (String.IsNullOrWhiteSpace(groupNo)) return true;
+    if (groupNo.Length != 4) return true;
+
+    return false;
+
+}
+
 
 

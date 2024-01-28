@@ -13,7 +13,7 @@ namespace ConsoleAPP
 			this.PrevGroupNo = prevGroupNo;
 		}
 
-		public string PrevGroupNo { get; set; }
+		public  string PrevGroupNo { get; set; }
 		public int count = 0;
 
         public override string ToString()
