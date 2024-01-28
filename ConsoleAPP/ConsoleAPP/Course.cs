@@ -4,8 +4,7 @@ using ConsoleAPP.Exceptions;
 namespace ConsoleAPP
 {
 	public class Course:IWarrantyManager,ICourseManager
-	{
-		
+	{	
         public double WarrantyStudentPercent => throw new NotImplementedException();
 
         private Student[] _students = new Student[0];
@@ -30,8 +29,7 @@ namespace ConsoleAPP
                         warrantyStudentCount++;
                     }
                 }
-            }
-            
+            }        
             if (sameGroupCount >= 16)
             {
                 throw new GroupLimitException();
@@ -109,7 +107,6 @@ namespace ConsoleAPP
         }
         public double GetGroupAvg(string groupNo)
         {
-
                 int count = 0;
                 double avaragePoint = 0;
                 for (int i = 0; i < _students.Length; i++)
@@ -128,7 +125,7 @@ namespace ConsoleAPP
 
         public Student[] GetStudentsByGroupNo(string groupNo)
         {
-            
+          
             Student[] students = new Student[0];
             for (int i = 0; i < _students.Length; i++)
             {
@@ -138,6 +135,7 @@ namespace ConsoleAPP
                     students[students.Length - 1] = _students[i];
                 }
             }
+          
             return students;
             
         }
@@ -164,9 +162,11 @@ namespace ConsoleAPP
                 }
                               
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"{groupNo} groupunda {totalCount} adam var");
             Console.WriteLine($"{groupNo} groupunda {nonWarrantyCount} sayda zemanetsiz oxuyan telebe var");
             Console.WriteLine($"{groupNo} groupunda {warrantyCount} sayda zemanetli oxuyan telebe var");
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
         public Student[] GetStudentsByPointRange(double point1, double point2)
@@ -259,7 +259,9 @@ namespace ConsoleAPP
         {
             if (CheckHas())
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("hal hazirda hec bir telebe daxil edilmeyib!");
+                Console.ForegroundColor = ConsoleColor.White;
                 return;
             }
             for (int i = 0; i < _students.Length; i++)
@@ -288,16 +290,16 @@ namespace ConsoleAPP
                             }
                         }
                     }
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"Qrup {grupNo} melumatlari:");
                     Console.WriteLine($"Cemi {allStudent} telebe var.");
                     Console.WriteLine($"{nonWarrantyStudentCount} sayda zemanetli olmayan telebe var.");
                     Console.WriteLine($"{warrantyStudentCount} sayda zemanetli telebe var.");
-                    
+                    Console.ForegroundColor = ConsoleColor.White;
+
                 }
             }
-        }
-
-        
+        }     
         private bool checkGroupProses(string groupNo, int currentIndex)
         {
             for (int i = 0; i < currentIndex; i++)

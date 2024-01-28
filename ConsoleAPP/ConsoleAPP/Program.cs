@@ -1,13 +1,14 @@
 ﻿using ConsoleAPP;
 using ConsoleAPP.Exceptions;
 
+Console.ForegroundColor = ConsoleColor.White;
+Console.BackgroundColor = ConsoleColor.Black;
+Console.Clear();
 Course course = new Course();
-
 string secim;
 do
 {
     secim = SecimEt();
-
     switch (secim)
     {
         case "1":
@@ -53,7 +54,9 @@ do
 string SecimEt()
 {
     ShowMenu();
-    Console.WriteLine("Emeliyyat secin: ");
+    Console.ForegroundColor = ConsoleColor.DarkYellow;
+    Console.Write("Emeliyyat secin: ");
+    Console.ForegroundColor = ConsoleColor.White;
     return Console.ReadLine();
 }
 void ShowMenu()
@@ -77,7 +80,10 @@ void AddStudent()
     string fullname = Console.ReadLine();
     if (CheckFullName(fullname))
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("zehmet olmasa fullnameyi duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+
         goto FullName;
     }
     Email:
@@ -85,20 +91,28 @@ void AddStudent()
     string email = Console.ReadLine();
     if (CheckEmaill(email))
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("zehmet olmasa emaili duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto Email;
+
     }
     if (course.CheckEmail(email))
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("eyni adli email daxil etmek mumkun deyil!");
+        Console.ForegroundColor = ConsoleColor.White;
+
         goto Email;
     }
     GroupNo:
-    Console.WriteLine("group no daxil edin:");
+    Console.WriteLine("groupNo daxil edin:");
     string groupNo = Console.ReadLine();
     if (CheckGroupNo(groupNo))
     {
-        Console.WriteLine("zehmet olmasa duzgun group no daxil edin!");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun groupNo daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto GroupNo;
     }
     DataTimee:
@@ -107,12 +121,16 @@ void AddStudent()
     DateTime startTime;
     if(!DateTime.TryParse(strDateTime,out startTime))
     {
-        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa Datetime i duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto DataTimee;
     }
     if (course.CheckDate(startTime))
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("kecmis tarix olmaz!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto DataTimee;
     }
     Point:
@@ -121,16 +139,23 @@ void AddStudent()
     double point;
     if(!double.TryParse(strPoint,out point))
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto Point;
     }
     if(point<0 || point > 100)
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("0 ve 100 araliginda olmalidir!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto Point;
     }
-    checkIsWarranty:
+checkIsWarranty:
+
+    Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("Zemanetli telebedirmi? y/n");
+    Console.ForegroundColor = ConsoleColor.White;
     string StrIsWarranty = Console.ReadLine();
 
     Student student;
@@ -143,13 +168,18 @@ void AddStudent()
         string prevGroupNo = Console.ReadLine();
         if (CheckGroupNo(prevGroupNo))
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+            Console.ForegroundColor = ConsoleColor.White;
+
             goto PrevGroupNo;
 
         }
         if (prevGroupNo == groupNo)
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("evvelki groupNo ile eyni ola bilmez!");
+            Console.ForegroundColor = ConsoleColor.White;
             goto PrevGroupNo;
         }
         
@@ -168,23 +198,32 @@ void AddStudent()
     }
     catch (WarrantyStudentLimit)
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("2 den artiq warranty student ola bilmez!");
+        Console.ForegroundColor = ConsoleColor.White;
+
     }
 
     catch (GroupLimitException)
     {
-
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("bir grupda 16 dan artiq telebe ola bilmez!");
+        Console.ForegroundColor = ConsoleColor.White;
         goto GroupNo;
 
 
     }
-
-
     catch (Exception)
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("bilinmeyen xeta bas verdi(:");
-    } 
+        Console.ForegroundColor = ConsoleColor.White;
+
+    }
+    Console.ForegroundColor = ConsoleColor.DarkGreen;
+    Console.WriteLine("Student elave edildi!");
+    Console.ForegroundColor = ConsoleColor.White;
+
 }
 
 void ShowStudents()
@@ -198,21 +237,29 @@ void ShowStudents()
     switch (secimm)
     {
         case "1":
+            Console.ForegroundColor = ConsoleColor.Blue;
             for (int i = 0; i < course.Students.Length; i++)
-                Console.WriteLine(course.Students[i]);
+            Console.WriteLine(course.Students[i]);
+            Console.ForegroundColor = ConsoleColor.White;
             break;
         case "2":
+            Console.ForegroundColor = ConsoleColor.Blue;
             var zemanetli = course.GetWarrantyStudents();
             for (int i = 0; i < zemanetli.Length; i++)
                 Console.WriteLine(zemanetli[i]);
+            Console.ForegroundColor = ConsoleColor.White;
             break;
         case "3":
+            Console.ForegroundColor = ConsoleColor.Blue;
             var zemanetsiz = course.GetNonWarrantyStudents();
             for (int i = 0; i < zemanetsiz.Length; i++)
                 Console.WriteLine(zemanetsiz[i]);
+            Console.ForegroundColor = ConsoleColor.White;
             break;
         default:
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("Secim yanlisdir!");
+            Console.ForegroundColor = ConsoleColor.White;
             break;
     }
 }
@@ -220,15 +267,20 @@ void RemoveStudent()
 {
     for (int i = 0; i < course.Students.Length; i++)
         Console.WriteLine(course.Students[i]);
-    Console.WriteLine("Telebe Nomresi qeyd edin:");
-    string noStr;
-    int no;
 
-    do
+    RemoveStudent:
+    Console.WriteLine("Telebe Nomresi qeyd edin:");
+    string noStr = Console.ReadLine();
+    int no;
+    if (!int.TryParse(noStr, out no))
     {
-         noStr = Console.ReadLine();
-       
-    } while (!int.TryParse(noStr,out no));
+
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto RemoveStudent;
+
+    }
     
     try
     {
@@ -236,110 +288,151 @@ void RemoveStudent()
     }
     catch (StudentNotFoundException)
     {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine($"qeyd etdiyiniz nomreli telebe yoxdur");
+        Console.ForegroundColor = ConsoleColor.White;
+
     }
     
     catch
     {
-        Console.WriteLine("bilinmedik  bir xeta bas verdi");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("bilinmedik bir xeta bas verdi");
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }
 void GetStudentByGroupNo()
 {
-    string groupNo;
-    do
-    {
-        Console.WriteLine("axaracaginiz qrupun nomresini daxil edin: ");
-         groupNo = Console.ReadLine();
+      GetGroupNo:
+    Console.WriteLine("axtaracaginiz qrupun nomresini daxil edin: ");
+    string groupNo = Console.ReadLine();
 
-    } while (String.IsNullOrWhiteSpace(groupNo));
+    if (String.IsNullOrWhiteSpace(groupNo))
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto GetGroupNo;
+    }
 
     var studentByGroupNo = course.GetStudentsByGroupNo(groupNo);
     for (int i = 0; i < studentByGroupNo.Length; i++)
     {
         Console.WriteLine(studentByGroupNo[i]);
-
-    }  
-    
+    }     
 }
 void GetSelectedGroupInfo()
 {
-    string groupNo;
-    do
-    {
-        Console.WriteLine("axaracaginiz qrupun nomresini daxil edin: ");
-        groupNo = Console.ReadLine();
+    GetSelectedGroupNo:
+    Console.WriteLine("axtaracaginiz qrupun nomresini daxil edin: ");
+    string groupNo = Console.ReadLine();
 
-    } while (String.IsNullOrWhiteSpace(groupNo));
+    if (String.IsNullOrWhiteSpace(groupNo))
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto GetSelectedGroupNo;
+    }
 
     course.GetSelectedGroupInfo(groupNo);
 
 }
 void FindStudentByNo()
 {
-   
-    string StrNo;
+    StrNo:
+    Console.WriteLine("axtaracaginiz telebenin nomresini daxil edin:");
+    string StrNo = Console.ReadLine();
     int no;
-    do
+    if(!int.TryParse(StrNo, out no))
     {
-        Console.WriteLine("axtaracaginiz telebenin nomresini daxil edin:");
-        StrNo = Console.ReadLine();
-
-    } while (!int.TryParse(StrNo,out no));
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto StrNo;
+    }
     if(course.FindStudentByNo(no)!=null)
     Console.WriteLine(course.FindStudentByNo(no));
     else
     {
-       Console.WriteLine($"{no} Telebe yoxdur!");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine($"{no} Telebe yoxdur!");
+        Console.ForegroundColor = ConsoleColor.White;
     }
 
 }
 void SearchWithDate()
 {
-    string StrDateTime1;
+    DataTimee1:
+    Console.WriteLine("DateTime1 daxil edin:");
+    string strFirstTime = Console.ReadLine();
     DateTime FirstTime;
-    do
+    if (!DateTime.TryParse(strFirstTime, out FirstTime))
     {
-        Console.WriteLine("DateTime1 daxil edin:");
-        StrDateTime1 = Console.ReadLine();
-    } while (!DateTime.TryParse(StrDateTime1, out FirstTime));
-    string StrDateTime2;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto DataTimee1;
+    }
+    DataTimee2:
+    Console.WriteLine("DateTime2 daxil edin:");
+    string strSecondTime = Console.ReadLine();
     DateTime SecondTime;
-    do
+    if (!DateTime.TryParse(strSecondTime, out SecondTime))
     {
-        Console.WriteLine("DateTime2 daxil edin:");
-        StrDateTime2 = Console.ReadLine();
-    } while (!DateTime.TryParse(StrDateTime2, out SecondTime));
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto DataTimee2;
+    }
 
-   var search=course.SearchWithDate(FirstTime,SecondTime);
+    var search=course.SearchWithDate(FirstTime,SecondTime);
     for (int i = 0; i < search.Length; i++)
     {
         Console.WriteLine(search[i]);
 
-    }
-    
+    }    
 }
 void SearchWithPointRange()
 {
-    string StrPoint1;
+    StrPointt1:
+    Console.WriteLine("axtarmaq istediyiniz araligin ilk heddini yazin:");
+    string StrPoint1 = Console.ReadLine();
     double point1;
-    do
+    if(!double.TryParse(StrPoint1, out point1))
     {
-        Console.WriteLine("axtarmaq istediyiniz araligin ilk heddini yazin:");
-        StrPoint1 = Console.ReadLine();
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin:");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto StrPointt1;
+    }
+    if(point1<0 || point1 > 100)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("daxil etdiyiniz eded 0 la 100 arasinda olmalidir!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto StrPointt1;
+    }
 
-
-    } while (!double.TryParse(StrPoint1, out point1));
-
-    string StrPoint2;
+    StrPointt2:
+    Console.WriteLine("axtarmaq istediyiniz araligin ilk heddini yazin:");
+    string StrPoint2 = Console.ReadLine();
     double point2;
-    do
+    if (!double.TryParse(StrPoint2, out point2))
     {
-        Console.WriteLine("axtarmaq istediyiniz araligin son heddini yazin:");
-        StrPoint2 = Console.ReadLine();
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun daxil edin:");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto StrPointt2;
+    }
+    if (point2 < 0 || point2 > 100)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("daxil etdiyiniz eded 0 la 100 arasinda olmalidir!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto StrPointt2;
+    }
 
-
-    } while (!double.TryParse(StrPoint2, out point2));
 
     var search = course.GetStudentsByPointRange(point1, point2);
     for (int i = 0; i < search.Length; i++)
@@ -350,14 +443,16 @@ void SearchWithPointRange()
 }
 void AvaragePoint()
 {
-    string groupNo;
-    do
+    GroupNoo:
+    Console.WriteLine(" axtaracaginiz groupNo daxil edin:");
+    string groupNo = Console.ReadLine();
+    if (CheckGroupNo(groupNo))
     {
-        Console.WriteLine("axaracaginiz qrupun nomresini daxil edin: ");
-        groupNo = Console.ReadLine();
-
-    } while (String.IsNullOrWhiteSpace(groupNo));
-
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("zehmet olmasa duzgun groupNo daxil edin!");
+        Console.ForegroundColor = ConsoleColor.White;
+        goto GroupNoo;
+    }
     Console.WriteLine(course.GetGroupAvg(groupNo));
 }
 void ShowAllGroupInfo()
