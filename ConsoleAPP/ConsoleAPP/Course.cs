@@ -67,13 +67,13 @@ namespace ConsoleAPP
         public Student FindStudentByNo(int no)
         {
          
-                for (int i = 0; i < _students.Length; i++)
-                {
-                    if (_students[i].No == no)
-                    {
-                        return _students[i];
-                    }
-                }
+          for (int i = 0; i < _students.Length; i++)
+          {
+              if(_students[i].No == no)
+              {
+                 return _students[i];
+              }
+          }      
             
             return null;      
         }
@@ -119,7 +119,7 @@ namespace ConsoleAPP
 
                 }
             
-                return count == 0 ? 0 : (avaragePoint / count);
+                return count == 0 ? -1 : (avaragePoint / count);
             
         }
 
@@ -135,12 +135,12 @@ namespace ConsoleAPP
                     students[students.Length - 1] = _students[i];
                 }
             }
-          
-            return students;
             
+             return students;   
         }
         public void GetSelectedGroupInfo(string groupNo)
-        { 
+        {
+           
             int warrantyCount = 0;
             int totalCount = 0;
             int nonWarrantyCount = 0;

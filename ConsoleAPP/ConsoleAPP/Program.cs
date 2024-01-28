@@ -55,28 +55,29 @@ string SecimEt()
 {
     ShowMenu();
     Console.ForegroundColor = ConsoleColor.DarkYellow;
-    Console.Write("Emeliyyat secin: ");
+    Console.Write("\nEmeliyyat secin: ");
     Console.ForegroundColor = ConsoleColor.White;
     return Console.ReadLine();
 }
 void ShowMenu()
 {
-    Console.WriteLine("1.Telebe elave et:");
-    Console.WriteLine("2.Telebe sil:");
-    Console.WriteLine("3.Telebelere bax:");
-    Console.WriteLine("4.Secilmis groupdaki telebelere bax:");
-    Console.WriteLine("5.Secilmis groupa bax:");
-    Console.WriteLine("6.No deyerine gore axtaris at:");
-    Console.WriteLine("7.Tarix aralığına görə axtarış et:");
-    Console.WriteLine("8.Point aralığına görə axtarış et:");
-    Console.WriteLine("9.Qrup ortalamasına bax:");
-    Console.WriteLine("10.Qrup və tələbə saylarına bax:");
-    Console.WriteLine("11.Çıx:");
+    Console.WriteLine("**************MENU***********************");
+    Console.WriteLine("* 1.Telebe elave et:                    *");
+    Console.WriteLine("* 2.Telebe sil:                         *");
+    Console.WriteLine("* 3.Telebelere bax:                     *");
+    Console.WriteLine("* 4.Secilmis groupdaki telebelere bax:  *");
+    Console.WriteLine("* 5.Secilmis groupa bax:                *");
+    Console.WriteLine("* 6.No deyerine gore axtaris at:        *");
+    Console.WriteLine("* 7.Tarix aralığına görə axtarış et:    *");
+    Console.WriteLine("* 8.Point aralığına görə axtarış et:    *");
+    Console.WriteLine("* 9.Qrup ortalamasına bax:              *");
+    Console.WriteLine("* 10.Qrup və tələbə saylarına bax:      *");
+    Console.WriteLine("* 11.Çıx:                               *");
 }
 void AddStudent()
 {
     FullName:
-    Console.WriteLine("Fullnameyi daxil edin:");
+    Console.WriteLine("\nFullnameyi daxil edin:");
     string fullname = Console.ReadLine();
     if (CheckFullName(fullname))
     {
@@ -87,7 +88,7 @@ void AddStudent()
         goto FullName;
     }
     Email:
-    Console.WriteLine("Emaili daxil edin:");
+    Console.WriteLine("\nEmaili daxil edin:");
     string email = Console.ReadLine();
     if (CheckEmaill(email))
     {
@@ -106,7 +107,7 @@ void AddStudent()
         goto Email;
     }
     GroupNo:
-    Console.WriteLine("groupNo daxil edin:");
+    Console.WriteLine("\ngroupNo daxil edin:");
     string groupNo = Console.ReadLine();
     if (CheckGroupNo(groupNo))
     {
@@ -116,7 +117,7 @@ void AddStudent()
         goto GroupNo;
     }
     DataTimee:
-    Console.WriteLine("DateTime daxil edin:");
+    Console.WriteLine("\nDateTime daxil edin:");
     string strDateTime = Console.ReadLine();
     DateTime startTime;
     if(!DateTime.TryParse(strDateTime,out startTime))
@@ -134,7 +135,7 @@ void AddStudent()
         goto DataTimee;
     }
     Point:
-    Console.WriteLine("Pointi daxil edin:");
+    Console.WriteLine("\nPointi daxil edin:");
     string strPoint = Console.ReadLine();
     double point;
     if(!double.TryParse(strPoint,out point))
@@ -154,7 +155,7 @@ void AddStudent()
 checkIsWarranty:
 
     Console.ForegroundColor = ConsoleColor.Magenta;
-    Console.WriteLine("Zemanetli telebedirmi? y/n");
+    Console.WriteLine("\nZemanetli telebedirmi? y/n");
     Console.ForegroundColor = ConsoleColor.White;
     string StrIsWarranty = Console.ReadLine();
 
@@ -164,7 +165,7 @@ checkIsWarranty:
     {
    
         PrevGroupNo:
-        Console.WriteLine("Prev groupNo daxil edin:");
+        Console.WriteLine("\nPrev groupNo daxil edin:");
         string prevGroupNo = Console.ReadLine();
         if (CheckGroupNo(prevGroupNo))
         {
@@ -229,8 +230,8 @@ checkIsWarranty:
 void ShowStudents()
 {
     Console.WriteLine("1.Butun telebeler");
-    Console.WriteLine("2.zemanetli telebeler");
-    Console.WriteLine("3.zamanetden gelmeyenler");
+    Console.WriteLine("2.Zemanetli telebeler");
+    Console.WriteLine("3.Zamanetden gelmeyenler");
     Console.WriteLine("Secim:");
     string secimm = Console.ReadLine();
 
@@ -269,7 +270,7 @@ void RemoveStudent()
         Console.WriteLine(course.Students[i]);
 
     RemoveStudent:
-    Console.WriteLine("Telebe Nomresi qeyd edin:");
+    Console.WriteLine("\nTelebe Nomresi qeyd edin:");
     string noStr = Console.ReadLine();
     int no;
     if (!int.TryParse(noStr, out no))
@@ -300,11 +301,15 @@ void RemoveStudent()
         Console.WriteLine("bilinmedik bir xeta bas verdi");
         Console.ForegroundColor = ConsoleColor.White;
     }
+    Console.ForegroundColor = ConsoleColor.DarkGreen;
+    Console.WriteLine("Daxil etdiyiniz nomreli telebe silindi!");
+    Console.ForegroundColor = ConsoleColor.White;
+
 }
 void GetStudentByGroupNo()
 {
       GetGroupNo:
-    Console.WriteLine("axtaracaginiz qrupun nomresini daxil edin: ");
+    Console.WriteLine("\nAxtaracaginiz qrupun nomresini daxil edin: ");
     string groupNo = Console.ReadLine();
 
     if (String.IsNullOrWhiteSpace(groupNo))
@@ -324,7 +329,7 @@ void GetStudentByGroupNo()
 void GetSelectedGroupInfo()
 {
     GetSelectedGroupNo:
-    Console.WriteLine("axtaracaginiz qrupun nomresini daxil edin: ");
+    Console.WriteLine("\nAxtaracaginiz qrupun nomresini daxil edin: ");
     string groupNo = Console.ReadLine();
 
     if (String.IsNullOrWhiteSpace(groupNo))
@@ -341,7 +346,7 @@ void GetSelectedGroupInfo()
 void FindStudentByNo()
 {
     StrNo:
-    Console.WriteLine("axtaracaginiz telebenin nomresini daxil edin:");
+    Console.WriteLine("\nAxtaracaginiz telebenin nomresini daxil edin:");
     string StrNo = Console.ReadLine();
     int no;
     if(!int.TryParse(StrNo, out no))
@@ -356,7 +361,7 @@ void FindStudentByNo()
     else
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine($"{no} Telebe yoxdur!");
+        Console.WriteLine($"{no} nomreli Telebe yoxdur!");
         Console.ForegroundColor = ConsoleColor.White;
     }
 
@@ -364,7 +369,7 @@ void FindStudentByNo()
 void SearchWithDate()
 {
     DataTimee1:
-    Console.WriteLine("DateTime1 daxil edin:");
+    Console.WriteLine("\nDateTime1 daxil edin:");
     string strFirstTime = Console.ReadLine();
     DateTime FirstTime;
     if (!DateTime.TryParse(strFirstTime, out FirstTime))
@@ -375,7 +380,7 @@ void SearchWithDate()
         goto DataTimee1;
     }
     DataTimee2:
-    Console.WriteLine("DateTime2 daxil edin:");
+    Console.WriteLine("\nDateTime2 daxil edin:");
     string strSecondTime = Console.ReadLine();
     DateTime SecondTime;
     if (!DateTime.TryParse(strSecondTime, out SecondTime))
@@ -396,7 +401,7 @@ void SearchWithDate()
 void SearchWithPointRange()
 {
     StrPointt1:
-    Console.WriteLine("axtarmaq istediyiniz araligin ilk heddini yazin:");
+    Console.WriteLine("\nAxtarmaq istediyiniz araligin ilk heddini yazin:");
     string StrPoint1 = Console.ReadLine();
     double point1;
     if(!double.TryParse(StrPoint1, out point1))
@@ -444,7 +449,7 @@ void SearchWithPointRange()
 void AvaragePoint()
 {
     GroupNoo:
-    Console.WriteLine(" axtaracaginiz groupNo daxil edin:");
+    Console.WriteLine("\nAxtaracaginiz groupNo daxil edin:");
     string groupNo = Console.ReadLine();
     if (CheckGroupNo(groupNo))
     {
@@ -453,7 +458,19 @@ void AvaragePoint()
         Console.ForegroundColor = ConsoleColor.White;
         goto GroupNoo;
     }
-    Console.WriteLine(course.GetGroupAvg(groupNo));
+    if (course.GetGroupAvg(groupNo) == -1)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine("Qrupda telebe yoxdur!");
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+    else
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine($"Qrubdaki telebelerin ortalama bali: {course.GetGroupAvg(groupNo)}");
+        Console.ForegroundColor = ConsoleColor.White;
+    }
+   
 }
 void ShowAllGroupInfo()
 {

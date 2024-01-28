@@ -5,7 +5,7 @@ namespace ConsoleAPP
 	{
         public static bool CheckFullname( this string fullname)
         {
-          
+            
             string[] namesArr = fullname.Split(' ');
 
             if (namesArr.Length == 2)
@@ -48,7 +48,7 @@ namespace ConsoleAPP
         }
         public static string ChangeToCaptalize(this string fullname)
         {
-
+            
             string[] parts = fullname.Split(' ');
             string part0 = parts[0][0].ToString().ToUpper()+parts[0].Substring(1).ToLower();
             string part1 = parts[1][0].ToString().ToUpper()+parts[1].Substring(1).ToLower();
