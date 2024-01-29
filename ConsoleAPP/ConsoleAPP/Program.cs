@@ -224,12 +224,7 @@ checkIsWarranty:
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("bilinmeyen xeta bas verdi(:");
         Console.ForegroundColor = ConsoleColor.White;
-
     }
-    Console.ForegroundColor = ConsoleColor.DarkGreen;
-    Console.WriteLine("\nStudent elave edildi!");
-    Console.ForegroundColor = ConsoleColor.White;
-
 }
 void ShowStudents()
 {
