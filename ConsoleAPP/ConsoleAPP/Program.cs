@@ -4,7 +4,7 @@ using ConsoleAPP.Exceptions;
 Console.ForegroundColor = ConsoleColor.White;
 Console.BackgroundColor = ConsoleColor.Black;
 Console.Clear();
- const int  maxGroupLength = 4;
+ const int  maxGroupNameLength = 4;
 const int minPoint = 0;
 const int maxPoint = 100;
 Course course = new Course();
@@ -237,7 +237,7 @@ void ShowStudents()
     Console.WriteLine("1.Butun telebeler");
     Console.WriteLine("2.Zemanetli telebeler");
     Console.WriteLine("3.Zamanetden gelmeyenler");
-    Console.WriteLine("Secim:");
+    Console.Write("Secim: ");
     string secimm = Console.ReadLine();
 
     switch (secimm)
@@ -499,7 +499,7 @@ bool CheckEmaill(string email)
 bool CheckGroupNo(string groupNo)
 {
     if (String.IsNullOrWhiteSpace(groupNo)) return true;
-    if (groupNo.Length != maxGroupLength) return true;
+    if (groupNo.Length != maxGroupNameLength) return true;
 
     return false;
 

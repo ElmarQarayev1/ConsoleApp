@@ -1,25 +1,25 @@
 ﻿<Properties StartupConfiguration="{A3991B54-FDBE-46AA-A22A-D2D973D84B27}|Default">
   <MonoDevelop.Ide.ItemProperties.ConsoleAPP PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleAPP/Course.cs">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleAPP/Program.cs">
     <Files>
-      <File FileName="ConsoleAPP/Program.cs" Line="360" Column="22" />
-      <File FileName="ConsoleAPP/Student.cs" Line="1" Column="1" />
-      <File FileName="ConsoleAPP/WarrantyStudent.cs" />
-      <File FileName="ConsoleAPP/ICourseManager.cs" />
-      <File FileName="ConsoleAPP/IWarrantyManager.cs" />
-      <File FileName="ConsoleAPP/Course.cs" Line="77" Column="16" />
+      <File FileName="ConsoleAPP/Program.cs" Line="16" Column="6" />
+      <File FileName="ConsoleAPP/Student.cs" Line="22" Column="32" />
+      <File FileName="ConsoleAPP/WarrantyStudent.cs" Line="26" Column="1" />
+      <File FileName="ConsoleAPP/ICourseManager.cs" Line="25" Column="1" />
+      <File FileName="ConsoleAPP/IWarrantyManager.cs" Line="13" Column="1" />
+      <File FileName="ConsoleAPP/Course.cs" Line="23" Column="14" />
       <File FileName="ConsoleAPP/Exceptions/StudentNotFoundException.cs" />
       <File FileName="ConsoleAPP/Exceptions/WarrantyStudentLimit.cs" />
       <File FileName="ConsoleAPP/Exceptions/GroupLimitException.cs" />
-      <File FileName="ConsoleAPP/StringExtentions.cs" Line="54" Column="16" />
+      <File FileName="ConsoleAPP/StringExtentions.cs" Line="21" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ConsoleAPP" expanded="True">
-            <Node name="ConsoleAPP" expanded="True">
-              <Node name="Course.cs" selected="True" />
+          <Node name="ConsoleAPP">
+            <Node name="ConsoleAPP">
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -27,8 +27,8 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

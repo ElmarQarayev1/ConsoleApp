@@ -61,12 +61,13 @@ namespace ConsoleAPP
         public bool CheckDate(DateTime dateTime)
         {
             var diff = DateTime.Now - dateTime;
-            if (diff.TotalDays >=1)
+            if (diff.TotalDays >= 1)
             {
                 return true;
             }
             return false;
         }
+        
         public Student FindStudentByNo(int no)
         {
          
