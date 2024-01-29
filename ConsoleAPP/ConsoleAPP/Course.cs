@@ -24,7 +24,6 @@ namespace ConsoleAPP
                 
                 if (_students[i].GroupNo == st.GroupNo)
                 {
-
                     sameGroupCount++;
 
                     if (_students[i] is WarrantyStudent)
@@ -159,15 +158,13 @@ namespace ConsoleAPP
                     {
                         nonWarrantyCount++;
                     }
-                }
-                              
+                }                              
             }
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"{groupNo} groupunda {totalCount} adam var");
             Console.WriteLine($"{groupNo} groupunda {nonWarrantyCount} sayda zemanetsiz oxuyan telebe var");
             Console.WriteLine($"{groupNo} groupunda {warrantyCount} sayda zemanetli oxuyan telebe var");
             Console.ForegroundColor = ConsoleColor.White;
-
         }
         public Student[] GetStudentsByPointRange(double point1, double point2)
         {

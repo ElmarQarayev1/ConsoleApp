@@ -1,22 +1,16 @@
 ﻿<Properties StartupConfiguration="{A3991B54-FDBE-46AA-A22A-D2D973D84B27}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.ConsoleAPP PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleAPP/Course.cs">
     <Files>
-      <File FileName="ConsoleAPP/Program.cs" Line="79" Column="2" />
-      <File FileName="ConsoleAPP/Student.cs" Line="27" Column="31" />
-      <File FileName="ConsoleAPP/WarrantyStudent.cs" Line="24" Column="2" />
+      <File FileName="ConsoleAPP/Program.cs" Line="474" Column="24" />
+      <File FileName="ConsoleAPP/Student.cs" />
+      <File FileName="ConsoleAPP/WarrantyStudent.cs" />
       <File FileName="ConsoleAPP/ICourseManager.cs" />
       <File FileName="ConsoleAPP/IWarrantyManager.cs" />
-      <File FileName="ConsoleAPP/Course.cs" Line="19" Column="36" />
+      <File FileName="ConsoleAPP/Course.cs" Line="50" Column="10" />
       <File FileName="ConsoleAPP/Exceptions/StudentNotFoundException.cs" />
       <File FileName="ConsoleAPP/Exceptions/WarrantyStudentLimit.cs" />
       <File FileName="ConsoleAPP/Exceptions/GroupLimitException.cs" />
-      <File FileName="ConsoleAPP/StringExtentions.cs" Line="19" Column="18" />
+      <File FileName="ConsoleAPP/StringExtentions.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -30,5 +24,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ConsoleAPP PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

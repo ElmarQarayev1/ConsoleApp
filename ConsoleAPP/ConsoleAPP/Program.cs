@@ -112,7 +112,7 @@ Email:
         goto Email;
     }
 GroupNo:
-    Console.WriteLine("\ngroupNo daxil edin:");
+    Console.WriteLine("\nGroupNo daxil edin:");
     string groupNo = Console.ReadLine();
     if (CheckGroupNo(groupNo))
     {
