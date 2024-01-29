@@ -228,7 +228,7 @@ checkIsWarranty:
 }
 void ShowStudents()
 {
-    Console.WriteLine("************* Students *****************");
+    Console.WriteLine("\n************* Students *****************");
     Console.WriteLine("1.Butun telebeler");
     Console.WriteLine("2.Zemanetli telebeler");
     Console.WriteLine("3.Zamanetden gelmeyenler");
@@ -364,7 +364,7 @@ StrNo:
 }
 void SearchWithDate()
 {
-    Console.WriteLine("********** Search With Date *************");
+    Console.WriteLine("\n********** Search With Date *************");
     DataTimee1:
     Console.WriteLine("\nDateTime1 daxil edin:");
     string strFirstTime = Console.ReadLine();
@@ -446,7 +446,7 @@ void SearchWithPointRange()
 }
 void AvaragePoint()
 {
-    Console.WriteLine("******** Avarage Point In Group *********");
+    Console.WriteLine("\n******** Avarage Point In Group *********");
     GroupNoo:
     Console.WriteLine("\nAxtaracaginiz groupNo daxil edin:");
     string groupNo = Console.ReadLine();
