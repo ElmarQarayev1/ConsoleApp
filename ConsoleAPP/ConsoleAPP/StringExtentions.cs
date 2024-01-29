@@ -31,21 +31,60 @@ namespace ConsoleAPP
             return true;
 
         }
-
-        public static bool IsEmailValid(this string email)
+        public static bool CheckIsDigitOrLetter(this string name)
         {
-
-            if (!email.StartsWith("@") && email.Contains("@") && email.EndsWith(".az")&&!email.StartsWith("."))
+            for (int i = 0; i < name.Length; i++)
             {
-                string[] emailArr = email.Split('@');
+                if (!char.IsLetterOrDigit(name[i])) return false;
+            }
+            return true;
+        }
 
-                if (emailArr.Length == 2 && !emailArr[1].StartsWith("."))
+        public static bool isEmailValid(this string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+            if (email.StartsWith("@"))
+            {
+                return false;
+            }
+            string[] parts = email.Split('@');
+
+            if (parts.Length != 2)
+            {
+                return false;
+            }
+
+            if (parts[0].StartsWith(".") || parts[0].EndsWith("."))
+            {
+                return false;
+            }
+            for (int i = 0; i < parts[0].Length; i++)
+            {
+                if (!char.IsLetterOrDigit(parts[0][i]))
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            if (char.IsDigit(parts[0][0]))
+            {
+                return false;
+            }
+
+            if (!parts[1].EndsWith(".az"))
+            {
+                return false;
+            }
+
+            if (email.StartsWith("@") || parts[1].StartsWith("."))
+            {
+                return false;
+            }
+            return true;
         }
+
         public static string ChangeToCaptalize(this string fullname)
         {
             

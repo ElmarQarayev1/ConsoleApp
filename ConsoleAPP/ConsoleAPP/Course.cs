@@ -4,11 +4,14 @@ using ConsoleAPP.Exceptions;
 namespace ConsoleAPP
 {
 	public class Course:IWarrantyManager,ICourseManager
-	{	
-        public double WarrantyStudentPercent => throw new NotImplementedException();
-
+	{
+        private double _warrantyStudentPercent ;
+        public double WarrantyStudentPercent =>  _warrantyStudentPercent;
+        
         private Student[] _students = new Student[0];
         public Student[] Students => _students;
+        private const int maxGroupCount = 16;
+        private const int maxWarrantyStudentCount = 2;
 
         public void AddStudent(Student st)
         {
@@ -30,12 +33,12 @@ namespace ConsoleAPP
                     }
                 }
             }        
-            if (sameGroupCount >= 16)
+            if (sameGroupCount >= maxGroupCount)
             {
                 throw new GroupLimitException();
             }
 
-            if (st is WarrantyStudent && warrantyStudentCount >= 2)
+            if (st is WarrantyStudent && warrantyStudentCount >= maxWarrantyStudentCount)
             {
                 throw new WarrantyStudentLimit();
             }
@@ -43,7 +46,7 @@ namespace ConsoleAPP
             Array.Resize(ref _students, _students.Length + 1);
             _students[_students.Length - 1] = st;
         }
-       
+        
         public bool CheckEmail(string email)
         {
             for (int i = 0; i < _students.Length; i++)
@@ -73,11 +76,9 @@ namespace ConsoleAPP
               {
                  return _students[i];
               }
-          }      
-            
+          }             
             return null;      
         }
-
         public int FindStudentIndexByNo(int no)
         {
             for (int i = 0; i < _students.Length; i++)
@@ -103,7 +104,6 @@ namespace ConsoleAPP
                 _students[i + 1] = temp;
             }
             Array.Resize(ref _students, _students.Length - 1);
-
         }
         public double GetGroupAvg(string groupNo)
         {
@@ -116,9 +116,8 @@ namespace ConsoleAPP
                         count++;
                         avaragePoint += _students[i].Point;
                     }
-
                 }
-            
+                
                 return count == 0 ? -1 : (avaragePoint / count);
             
         }
@@ -186,7 +185,7 @@ namespace ConsoleAPP
         }
         public Student[] GetWarrantyStudents()
         {
-           
+            
             Student[] warrantyStudents = new Student[0];
 
             for (int i = 0; i < _students.Length; i++)
@@ -266,9 +265,9 @@ namespace ConsoleAPP
             }
             for (int i = 0; i < _students.Length; i++)
             {
-                string grupNo = _students[i].GroupNo;
+                string groupNo = _students[i].GroupNo;
 
-                if (!checkGroupProses(grupNo, i))
+                if (!checkGroupProses(groupNo, i))
                 {
                     int allStudent = 0;
                     int nonWarrantyStudentCount = 0;
@@ -276,7 +275,7 @@ namespace ConsoleAPP
 
                     for (int j = 0; j < _students.Length; j++)
                     {
-                        if (_students[j].GroupNo == grupNo)
+                        if (_students[j].GroupNo == groupNo)
                         {
                             allStudent++;
 
@@ -288,17 +287,20 @@ namespace ConsoleAPP
                             {
                                 nonWarrantyStudentCount++;
                             }
+                            
                         }
                     }
+                    _warrantyStudentPercent = ((double)warrantyStudentCount / allStudent) * 100;
                     Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"Qrup {grupNo} melumatlari:");
+                    Console.WriteLine($"Qrup {groupNo} melumatlari:");
                     Console.WriteLine($"Cemi {allStudent} telebe var.");
-                    Console.WriteLine($"{nonWarrantyStudentCount} sayda zemanetli olmayan telebe var.");
-                    Console.WriteLine($"{warrantyStudentCount} sayda zemanetli telebe var.");
+                    Console.WriteLine($"Zemanetden gelmeyen telebelerin sayi: {nonWarrantyStudentCount}");
+                    Console.WriteLine($"Zemanetden gelen telebelerin sayi: {warrantyStudentCount}");
+                    Console.WriteLine($"zemanetli telebelerin faizi: {_warrantyStudentPercent}");
                     Console.ForegroundColor = ConsoleColor.White;
 
                 }
-            }
+            }           
         }     
         private bool checkGroupProses(string groupNo, int currentIndex)
         {

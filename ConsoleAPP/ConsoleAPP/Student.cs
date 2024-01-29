@@ -47,7 +47,7 @@ namespace ConsoleAPP
             }
             set
             {
-                if (value.IsEmailValid())
+                if (value.isEmailValid())
                 {
                     _email = value;
                 }
@@ -106,7 +106,7 @@ namespace ConsoleAPP
 
         public override string ToString()
         {
-            return $"No: {No} - Fullname: {FullName} - email: {Email} - GroupNo:{GroupNo}- StartDate:{StartDate.ToString("dd.MM.yyyy")}- point: {Point}";
+            return $"No: {No} - Fullname: {FullName} - Email: {Email} - GroupNo:{GroupNo}- StartDate:{StartDate.ToString("dd.MM.yyyy")}- Point: {Point}";
         }
     }
   

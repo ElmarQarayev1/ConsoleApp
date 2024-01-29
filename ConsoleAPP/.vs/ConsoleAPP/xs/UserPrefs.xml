@@ -1,28 +1,24 @@
 ﻿<Properties StartupConfiguration="{A3991B54-FDBE-46AA-A22A-D2D973D84B27}|Default">
   <MonoDevelop.Ide.ItemProperties.ConsoleAPP PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleAPP/Course.cs">
     <Files>
-      <File FileName="ConsoleAPP/Program.cs" Line="142" Column="27" />
-      <File FileName="ConsoleAPP/Student.cs" Line="81" Column="14" />
-      <File FileName="ConsoleAPP/WarrantyStudent.cs" Line="26" Column="1" />
-      <File FileName="ConsoleAPP/ICourseManager.cs" Line="24" Column="1" />
-      <File FileName="ConsoleAPP/IWarrantyManager.cs" Line="1" Column="1" />
-      <File FileName="ConsoleAPP/Course.cs" Line="25" Column="50" />
-      <File FileName="ConsoleAPP/Exceptions/StudentNotFoundException.cs" Line="6" Column="3" />
-      <File FileName="ConsoleAPP/Exceptions/WarrantyStudentLimit.cs" Line="10" Column="1" />
-      <File FileName="ConsoleAPP/Exceptions/GroupLimitException.cs" Line="4" Column="44" />
-      <File FileName="ConsoleAPP/StringExtentions.cs" Line="60" Column="2" />
+      <File FileName="ConsoleAPP/Program.cs" Line="360" Column="22" />
+      <File FileName="ConsoleAPP/Student.cs" Line="1" Column="1" />
+      <File FileName="ConsoleAPP/WarrantyStudent.cs" />
+      <File FileName="ConsoleAPP/ICourseManager.cs" />
+      <File FileName="ConsoleAPP/IWarrantyManager.cs" />
+      <File FileName="ConsoleAPP/Course.cs" Line="77" Column="16" />
+      <File FileName="ConsoleAPP/Exceptions/StudentNotFoundException.cs" />
+      <File FileName="ConsoleAPP/Exceptions/WarrantyStudentLimit.cs" />
+      <File FileName="ConsoleAPP/Exceptions/GroupLimitException.cs" />
+      <File FileName="ConsoleAPP/StringExtentions.cs" Line="54" Column="16" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ConsoleAPP">
-            <Node name="ConsoleAPP">
-              <Node name="Exceptions" expanded="True" />
+          <Node name="ConsoleAPP" expanded="True">
+            <Node name="ConsoleAPP" expanded="True">
               <Node name="Course.cs" selected="True" />
             </Node>
           </Node>
@@ -30,6 +26,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
